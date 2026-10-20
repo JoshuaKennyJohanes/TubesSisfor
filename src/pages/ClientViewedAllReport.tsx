@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '../supabase'
+import './Report.css'
 
 type Row = {
   clientno: string
@@ -11,6 +12,7 @@ export default function ClientViewedAllReport() {
   const [rooms, setRooms] = useState(3)
   const [appliedRooms, setAppliedRooms] = useState(3)
   const [rows, setRows] = useState<Row[]>([])
+  const [loading, setLoading] = useState(true)
   const [errorMessage, setErrorMessage] = useState('')
 
   useEffect(() => {
@@ -23,40 +25,63 @@ export default function ClientViewedAllReport() {
         setErrorMessage('')
         setRows((data ?? []) as Row[])
       }
+      setLoading(false)
     }
     loadData()
   }, [appliedRooms])
 
   return (
-    <div>
-      <h1>Klien yang Sudah Melihat Semua Properti</h1>
+    <div className="report-card">
+      <div className="report-header">
+        <h1 className="report-title">Klien yang Sudah Melihat Semua Properti</h1>
+        <p className="report-desc">Klien yang sudah melakukan viewing ke setiap properti dengan jumlah kamar tertentu</p>
+      </div>
 
-      <label>
-        Jumlah kamar:{' '}
-        <input
-          type="number"
-          min={1}
-          value={rooms}
-          onChange={(e) => setRooms(Number(e.target.value))}
-        />
-      </label>{' '}
-      <button onClick={() => setAppliedRooms(rooms)}>Tampilkan</button>
+      <div className="report-toolbar">
+        <div className="report-field">
+          <label className="report-label" htmlFor="rooms">Jumlah kamar</label>
+          <input
+            id="rooms"
+            className="report-input"
+            type="number"
+            min={1}
+            value={rooms}
+            onChange={(e) => setRooms(Number(e.target.value))}
+          />
+        </div>
+        <button className="report-btn" onClick={() => setAppliedRooms(rooms)}>
+          Tampilkan
+        </button>
+      </div>
 
-      {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+      {errorMessage && <p className="report-error">{errorMessage}</p>}
 
-      <table border={1} cellPadding={6} style={{ marginTop: 16, borderCollapse: 'collapse' }}>
-        <thead>
-          <tr><th>clientNo</th><th>fName</th><th>lName</th></tr>
-        </thead>
-        <tbody>
-          {rows.map((r) => (
-            <tr key={r.clientno}>
-              <td>{r.clientno}</td><td>{r.fname}</td><td>{r.lname}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      {rows.length === 0 && <p>Tidak ada klien yang memenuhi syarat.</p>}
+      {loading ? (
+        <div className="report-empty">Memuat data...</div>
+      ) : rows.length === 0 ? (
+        <div className="report-empty">
+          Tidak ada klien yang sudah melihat semua properti dengan {appliedRooms} kamar.
+        </div>
+      ) : (
+        <div className="table-wrap">
+          <table className="report-table">
+            <thead>
+              <tr><th>Client No</th><th>Nama Depan</th><th>Nama Belakang</th></tr>
+            </thead>
+            <tbody>
+              {rows.map((r) => (
+                <tr key={r.clientno}>
+                  <td className="cell-id">{r.clientno}</td>
+                  <td>{r.fname}</td>
+                  <td>{r.lname}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+
+      <div className="report-footer">Jumlah baris: {rows.length}</div>
     </div>
   )
 }

@@ -1,0 +1,179 @@
+/* ===== Kartu pembungkus ===== */
+.report-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+}
+
+.report-header {
+  padding: 24px;
+  color: #ffffff;
+  background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+}
+
+.report-title {
+  margin: 0 0 4px;
+  font-size: 1.5rem;
+}
+
+.report-desc {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #dbeafe;
+}
+
+/* ===== Toolbar filter ===== */
+.report-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 12px;
+  padding: 16px 24px;
+  background: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.report-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.report-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+.report-input {
+  width: 160px;
+  padding: 9px 12px;
+  font-size: 0.95rem;
+  color: #111827;
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.report-input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+}
+
+.report-btn {
+  padding: 10px 18px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: #2563eb;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.report-btn:hover {
+  background: #1d4ed8;
+}
+
+/* ===== Tabel dengan scroll ===== */
+.table-wrap {
+  max-height: 420px;          /* ubah angka ini untuk mengatur tinggi tabel */
+  overflow: auto;             /* scroll vertikal dan horizontal */
+}
+
+.report-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.9rem;
+  color: #111827;
+  text-align: left;
+}
+
+.report-table th {
+  position: sticky;           /* header menempel saat scroll */
+  top: 0;
+  z-index: 1;
+  padding: 12px 16px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: #1e3a8a;
+  background: #dbeafe;
+  border-bottom: 2px solid #93c5fd;
+}
+
+.report-table td {
+  padding: 12px 16px;
+  white-space: nowrap;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.report-table tbody tr:nth-child(even) {
+  background: #f9fafb;
+}
+
+.report-table tbody tr:hover {
+  background: #eff6ff;
+}
+
+.cell-num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.cell-id {
+  font-weight: 700;
+  color: #1e3a8a;
+}
+
+.cell-null {
+  color: #9ca3af;
+  font-style: italic;
+}
+
+/* ===== Badge ===== */
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  border-radius: 999px;
+}
+
+.badge-manager    { color: #5b21b6; background: #ede9fe; }
+.badge-supervisor { color: #1d4ed8; background: #dbeafe; }
+.badge-assistant  { color: #374151; background: #e5e7eb; }
+.badge-default    { color: #374151; background: #e5e7eb; }
+
+/* ===== Footer, kosong, error ===== */
+.report-footer {
+  padding: 12px 24px;
+  font-size: 0.85rem;
+  color: #6b7280;
+  background: #f9fafb;
+  border-top: 1px solid #e5e7eb;
+}
+
+.report-empty {
+  padding: 40px 24px;
+  text-align: center;
+  color: #6b7280;
+}
+
+.report-error {
+  margin: 16px 24px;
+  padding: 10px 12px;
+  font-size: 0.875rem;
+  color: #b91c1c;
+  background: #fee2e2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+}
